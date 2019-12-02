@@ -1,3 +1,20 @@
 #!/bin/bash
 
-cat $GITHUB_EVENT_PATH
+if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
+then
+  REF="${GITLAB_REF_TO_TRIGGER}"
+else
+  REF=master
+fi
+
+cat > /tmp/payload.json <<EOF
+{
+  "ref":"${REF}",
+  "variables": $(cat $GITHUB_EVENT_PATH)
+}
+EOF
+
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d@/tmp/payload.json \
+    ${GITLAB_WEBHOOK_URL}
