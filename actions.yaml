@@ -1,0 +1,15 @@
+name: 'trigger-gitlabci-job'
+description: 'Trigger a  GitLab job via webhooks API including event info as variables."'
+author: 'rcmorano'
+inputs:
+  GITLAB_WEBHOOK_URL:
+    description: 'URL including token, in e.g.: "https://gitlab.example.com/api/v4/projects/15/trigger/pipeline?token=_CHANGE_ME_".'
+  GITLAB_REF_TO_TRIGGER:
+    description: 'Gitlab branch/tag to build. If empty, defaults to Github triggering branch.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'check-circle'
+  color: 'orange'
