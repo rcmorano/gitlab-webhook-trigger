@@ -1,5 +1,7 @@
 #!/bin/bash
 
+curl ifconfig.co
+
 if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
 then
   REF="${GITLAB_REF_TO_TRIGGER}"
