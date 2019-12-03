@@ -11,11 +11,12 @@ fi
 cat > /tmp/payload.json <<EOF
 {
   "ref":"${REF}",
-  "variables": $(cat $GITHUB_EVENT_PATH)
+  "variables": {
+    "GITHUB_EVENT_B64_ENCODED": "$(base64 $GITHUB_EVENT_PATH)"
+  }
 }
 EOF
 
-cat /tmp/payload.json
 
 if [ ! -z "${SOCKS5_PROXY}" ]
 then
