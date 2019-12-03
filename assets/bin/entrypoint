@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
 then
@@ -16,7 +15,6 @@ cat > /tmp/payload.json <<EOF
   }
 }
 EOF
-
 
 if [ ! -z "${SOCKS5_PROXY}" ]
 then
