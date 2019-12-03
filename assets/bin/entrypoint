@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
 then
@@ -21,8 +22,10 @@ then
   CURL_PROXY_ARGS="-x ${SOCKS5_PROXY}"
 fi
 
+# silent curl, since gitlab will return an informative response...
 curl -s -X POST \
     ${CURL_PROXY_ARGS} \
     -H "Content-Type: application/json" \
     -d@/tmp/payload.json \
-    ${GITLAB_WEBHOOK_URL}
+    ${GITLAB_WEBHOOK_URL} \
+    -o /dev/null
