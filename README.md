@@ -1,3 +1,7 @@
+# How to use
+
+Check `example.yaml` on this repository for a basic example :)
+
 # Notes
 
 It will send Github event as a Gitlab variable named `GITHUB_EVENT_B64_ENCODED` so you can then use it like this in your Gitlab job:
