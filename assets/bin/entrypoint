@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
 then
@@ -14,12 +15,14 @@ cat > /tmp/payload.json <<EOF
 }
 EOF
 
+cat /tmp/payload.json
+
 if [ ! -z "${SOCKS5_PROXY}" ]
 then
   CURL_PROXY_ARGS="-x ${SOCKS5_PROXY}"
 fi
 
-curl -X POST \
+curl -s -X POST \
     ${CURL_PROXY_ARGS} \
     -H "Content-Type: application/json" \
     -d@/tmp/payload.json \
