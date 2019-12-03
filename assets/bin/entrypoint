@@ -1,7 +1,5 @@
 #!/bin/bash
 
-curl ifconfig.co
-
 if [ ! -z "${GITLAB_REF_TO_TRIGGER}" ]
 then
   REF="${GITLAB_REF_TO_TRIGGER}"
@@ -16,7 +14,13 @@ cat > /tmp/payload.json <<EOF
 }
 EOF
 
+if [ ! -z "${SOCKS5_PROXY}" ]
+then
+  CURL_PROXY_ARGS="-x ${SOCKS5_PROXY}"
+fi
+
 curl -X POST \
+    ${CURL_PROXY_ARGS} \
     -H "Content-Type: application/json" \
     -d@/tmp/payload.json \
     ${GITLAB_WEBHOOK_URL}

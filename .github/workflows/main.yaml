@@ -11,3 +11,4 @@ jobs:
       env:
         GITLAB_WEBHOOK_URL: ${{ secrets.GITLAB_WEBHOOK_URL }}
         GITLAB_REF_TO_TRIGGER: ${{ secrets.GITLAB_REF_TO_TRIGGER }}
+        SOCKS5_PROXY: ${{ secrets.SOCKS5_PROXY }}

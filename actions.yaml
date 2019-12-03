@@ -6,6 +6,8 @@ inputs:
     description: 'URL including token, in e.g.: "https://gitlab.example.com/api/v4/projects/15/trigger/pipeline?token=_CHANGE_ME_".'
   GITLAB_REF_TO_TRIGGER:
     description: 'Gitlab branch/tag to build. If empty, defaults to Github triggering branch.'
+  SOCKS5_PROXY:
+    description: 'Socks proxy URI (in the form "socks5[h]://user:pass@host:port") to connect to Gitlab. If empty, none is used."
 runs:
   using: 'docker'
   image: 'Dockerfile'
